@@ -147,7 +147,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 9184672668167705242, guid: ce329e6a4d9ac784fb54ceae64e89091, type: 3}
   shootPoint: {fileID: 4877173128887228367}
-  speed: 10
+  listParent: {fileID: 0}
+  playerPosList: []
+  speed: 1500
 --- !u!1 &5432962961949331585
 GameObject:
   m_ObjectHideFlags: 0

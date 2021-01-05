@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        actualPos = 1;
+        actualPos = 2;
 
         for(int i = 0; i < listParent.transform.childCount; i++)
         {
