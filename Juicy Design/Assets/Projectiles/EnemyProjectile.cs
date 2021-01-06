@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyProjectile : MonoBehaviour
 {
-    public GameObject endCanvas;
     public float speed;
     private Rigidbody2D rb;
 
@@ -25,8 +24,7 @@ public class EnemyProjectile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Destroy(collision.gameObject);
-            Instantiate(endCanvas);
+            GameManager.instance.DecreaseLife();
             Destroy(this.gameObject);
         }
     }

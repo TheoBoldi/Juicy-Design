@@ -6,11 +6,9 @@ public class Projectile : MonoBehaviour
 {
     public float speed;
     private Rigidbody2D rb;
-    private GameManager gameManager;
 
     void Start()
     {
-        gameManager = GameObject.FindObjectOfType<GameManager>();
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = transform.up * speed;
         StartCoroutine(Destroy());
@@ -26,7 +24,8 @@ public class Projectile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            gameManager.UpdateScore();
+            SoundManager.instance.EnemyDeath();
+            GameManager.instance.UpdateScore();
             Destroy(collision.gameObject);
             Destroy(this.gameObject);
         }

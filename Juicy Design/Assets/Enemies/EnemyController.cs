@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public GameObject endCanvas;
-
+    [Header("Shoot")]
     public GameObject projectile;
     public Transform shootPoint;
     public float shootCooldown;
 
+    [Header("Movement")]
     public float speed;
     private Rigidbody2D rb;
 
@@ -47,8 +47,7 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Destroy(collision.gameObject);
-            Instantiate(endCanvas);
+            GameManager.instance.DecreaseLife();
         }
     }
 }
