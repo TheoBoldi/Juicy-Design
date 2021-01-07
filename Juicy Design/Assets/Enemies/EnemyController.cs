@@ -17,7 +17,6 @@ public class EnemyController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine(Shoot());
-        StartCoroutine(Destroy());
     }
 
     void Update()
@@ -37,17 +36,12 @@ public class EnemyController : MonoBehaviour
         StartCoroutine(Shoot());
     }
 
-    IEnumerator Destroy()
-    {
-        yield return new WaitForSeconds(6f);
-        Destroy(this.gameObject);
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             GameManager.instance.DecreaseLife();
+            Destroy(this.gameObject);
         }
     }
 }

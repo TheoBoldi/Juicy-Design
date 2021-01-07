@@ -124,7 +124,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -145,7 +145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad243f3a17aba304094038afd03db834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endCanvas: {fileID: 526883262919337232, guid: 22ad290d0826c7646a7bc575b4c07f56, type: 3}
   projectile: {fileID: 9184672668167705242, guid: c44741b76e237874584afacac24947a9, type: 3}
   shootPoint: {fileID: 8030133517050893354}
   shootCooldown: 2
