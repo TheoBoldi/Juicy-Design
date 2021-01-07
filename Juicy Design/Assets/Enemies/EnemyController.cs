@@ -11,17 +11,17 @@ public class EnemyController : MonoBehaviour
 
     [Header("Movement")]
     public float speed;
-    private Rigidbody2D rb;
+    private Rigidbody rb;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody>();
         StartCoroutine(Shoot());
     }
 
     void Update()
     {
-        rb.velocity = -transform.up * speed;
+        rb.velocity = -transform.right * speed;
     }
 
     public IEnumerator Shoot()
@@ -30,13 +30,13 @@ public class EnemyController : MonoBehaviour
 
         var tmp = Instantiate(projectile);
         tmp.transform.position = shootPoint.position;
-        tmp.GetComponent<Rigidbody2D>().velocity = -tmp.GetComponent<Rigidbody2D>().velocity;
+        tmp.GetComponent<Rigidbody>().velocity = -tmp.GetComponent<Rigidbody>().velocity;
         tmp = null;
 
         StartCoroutine(Shoot());
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {

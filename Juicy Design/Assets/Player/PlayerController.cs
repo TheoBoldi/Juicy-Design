@@ -13,11 +13,11 @@ public class PlayerController : MonoBehaviour
     public List<Transform> playerPosList;
     private int actualPos;
     public float speed;
-    private Rigidbody2D rb;
+    private Rigidbody rb;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody>();
         actualPos = 2;
 
         for(int i = 0; i < listParent.transform.childCount; i++)
@@ -31,14 +31,17 @@ public class PlayerController : MonoBehaviour
         if(actualPos > 0 && Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.Q))
         {
             actualPos--;
-            rb.AddForce(-transform.right * speed, ForceMode2D.Force);
-
+            rb.AddForce(transform.forward * speed, ForceMode.Impulse);
+            //rb.position = Vector3.Lerp(this.transform.position, playerPosList[actualPos].position, speed * Time.deltaTime); 
+            //rb.MovePosition(playerPosList[actualPos].position);
         }
 
         if (actualPos < playerPosList.Count - 1 && Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
             actualPos++;
-            rb.AddForce(transform.right * speed, ForceMode2D.Force);
+            rb.AddForce(-transform.forward * speed, ForceMode.Impulse);
+            //rb.position = Vector3.Lerp(this.transform.position, playerPosList[actualPos].position, speed * Time.deltaTime);
+            //rb.MovePosition(playerPosList[actualPos].position);
         }
 
         if (Input.GetKeyDown(KeyCode.Space))

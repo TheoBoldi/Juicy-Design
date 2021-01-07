@@ -5,12 +5,12 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float speed;
-    private Rigidbody2D rb;
+    private Rigidbody rb;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        rb.velocity = transform.up * speed;
+        rb = GetComponent<Rigidbody>();
+        rb.velocity = transform.right * speed;
         StartCoroutine(Destroy());
     }
 
@@ -20,7 +20,7 @@ public class Projectile : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
