@@ -29,5 +29,11 @@ public class Projectile : MonoBehaviour
             Destroy(collision.gameObject);
             Destroy(this.gameObject);
         }
+
+        if (collision.gameObject.CompareTag("EnemyProjectile"))
+        {
+            Destroy(collision.gameObject);
+            Destroy(this.gameObject);
+        }
     }
 }

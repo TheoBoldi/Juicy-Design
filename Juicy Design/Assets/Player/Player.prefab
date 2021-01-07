@@ -51,7 +51,7 @@ MonoBehaviour:
   shootPoint: {fileID: 4877173128887228367}
   listParent: {fileID: 0}
   playerPosList: []
-  speed: 1500
+  speed: 55
 --- !u!65 &9219612156890953667
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -15,10 +15,15 @@ public class PlayerController : MonoBehaviour
     public float speed;
     private Rigidbody rb;
 
+    private Animator anim;
+    private bool switchShootAnim;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        anim = GetComponentInChildren<Animator>();
         actualPos = 2;
+        switchShootAnim = false;
 
         for(int i = 0; i < listParent.transform.childCount; i++)
         {
@@ -32,6 +37,7 @@ public class PlayerController : MonoBehaviour
         {
             actualPos--;
             rb.AddForce(transform.forward * speed, ForceMode.Impulse);
+            anim.SetTrigger("MoveLeft");
             //rb.position = Vector3.Lerp(this.transform.position, playerPosList[actualPos].position, speed * Time.deltaTime); 
             //rb.MovePosition(playerPosList[actualPos].position);
         }
@@ -40,16 +46,34 @@ public class PlayerController : MonoBehaviour
         {
             actualPos++;
             rb.AddForce(-transform.forward * speed, ForceMode.Impulse);
+            anim.SetTrigger("MoveRight");
             //rb.position = Vector3.Lerp(this.transform.position, playerPosList[actualPos].position, speed * Time.deltaTime);
             //rb.MovePosition(playerPosList[actualPos].position);
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SoundManager.instance.Play("PlayerShoot");
-            var tmp = Instantiate(projectile);
-            tmp.transform.position = shootPoint.position;
-            tmp = null;
+            if (!switchShootAnim)
+            {
+                anim.SetTrigger("Shoot");
+                switchShootAnim = true;
+            }
+            else
+            {
+                anim.SetTrigger("Shoot2");
+                switchShootAnim = false;
+            }
+
+            StartCoroutine(ShootDelay());
         }
+    }
+
+    public IEnumerator ShootDelay()
+    {
+        yield return new WaitForSeconds(0.283f);
+        SoundManager.instance.Play("PlayerShoot");
+        var tmp = Instantiate(projectile);
+        tmp.transform.position = shootPoint.position;
+        tmp = null;
     }
 }

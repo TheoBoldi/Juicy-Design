@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
         else
         {
             SoundManager.instance.Play("PlayerHit");
+            player.GetComponentInChildren<Animator>().SetTrigger("Hurt");
         }
     }
 }
