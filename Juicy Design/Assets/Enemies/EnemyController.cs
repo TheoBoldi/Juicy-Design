@@ -8,32 +8,55 @@ public class EnemyController : MonoBehaviour
     public GameObject projectile;
     public Transform shootPoint;
     public float shootCooldown;
-
+    private bool canShoot = false;
     [Header("Movement")]
     public float speed;
     private Rigidbody rb;
 
+    private Animator _anim;
     void Start()
     {
+        _anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody>();
-        StartCoroutine(Shoot());
+        StartCoroutine(CheckFront());
+        StartCoroutine(TryShoot());
     }
 
     void Update()
     {
-        rb.velocity = -transform.right * speed;
+        rb.velocity = transform.right * speed;
     }
 
-    public IEnumerator Shoot()
+    public IEnumerator CheckFront()
     {
-       yield return new WaitForSeconds(shootCooldown);
 
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, Mathf.Infinity))
+        {
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hit.distance, Color.yellow);
+            if (hit.collider.tag == "Enemy")
+                canShoot = false;
+            else
+                canShoot = true;
+        }
+        yield return new WaitForSeconds(0.1f);
+        StartCoroutine(CheckFront());
+    }
+
+    public IEnumerator TryShoot()
+    {
+        if(canShoot)
+        _anim.SetTrigger("Shoot");
+        yield return new WaitForSeconds(shootCooldown);
+        StartCoroutine(TryShoot());
+    }
+
+    public void Shoot()
+    {
         var tmp = Instantiate(projectile);
         tmp.transform.position = shootPoint.position;
         tmp.GetComponent<Rigidbody>().velocity = -tmp.GetComponent<Rigidbody>().velocity;
         tmp = null;
-
-        StartCoroutine(Shoot());
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 9184672668167705242, guid: ce329e6a4d9ac784fb54ceae64e89091, type: 3}
   shootPoint: {fileID: 4877173128887228367}
+  shootCooldown: 0.5
   listParent: {fileID: 0}
   playerPosList: []
   speed: 55
@@ -81,6 +82,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 114
   m_CollisionDetection: 0
+--- !u!114 &1127870164306443267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556417500324529748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae46f92203e3954438bc09863d8c194e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5432962961949331585
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,6 +181,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3e8c2dd6fa9c554199a35b2b1c97e7c, type: 3}
+--- !u!1 &1556417500324529748 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3473479899330320545, guid: c3e8c2dd6fa9c554199a35b2b1c97e7c, type: 3}
+  m_PrefabInstance: {fileID: 2715044853514804981}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5623689560669256391 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7757060258442503218, guid: c3e8c2dd6fa9c554199a35b2b1c97e7c, type: 3}

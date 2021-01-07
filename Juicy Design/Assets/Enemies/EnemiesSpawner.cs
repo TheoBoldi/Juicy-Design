@@ -24,7 +24,7 @@ public class EnemiesSpawner : MonoBehaviour
         int random = Random.Range(0, Spawners.Count);
         var tmp = Instantiate(enemyPrefab);
         tmp.transform.position = Spawners[random].transform.position;
-        tmp.transform.rotation = new Quaternion(-90, 0, 0, 0);
+        tmp.transform.rotation = new Quaternion(0, 180, 0, 0);
         tmp = null;
         StartCoroutine(Spawn());
     }

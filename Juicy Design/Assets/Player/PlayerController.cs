@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     [Header("Shoot")]
     public GameObject projectile;
     public Transform shootPoint;
-
+    public float shootCooldown = .5f;  
     [Header("Movement")]
     public GameObject listParent;
     public List<Transform> playerPosList;
@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
 
     private Animator anim;
     private bool switchShootAnim;
-
+    private bool canShoot = true;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(actualPos > 0 && Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.Q))
+        if(actualPos > 0 && (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.Q)))
         {
             actualPos--;
             rb.AddForce(transform.forward * speed, ForceMode.Impulse);
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
             //rb.MovePosition(playerPosList[actualPos].position);
         }
 
-        if (actualPos < playerPosList.Count - 1 && Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+        if (actualPos < playerPosList.Count - 1 && (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)))
         {
             actualPos++;
             rb.AddForce(-transform.forward * speed, ForceMode.Impulse);
@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
             //rb.MovePosition(playerPosList[actualPos].position);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && canShoot)
         {
             if (!switchShootAnim)
             {
@@ -63,17 +63,22 @@ public class PlayerController : MonoBehaviour
                 anim.SetTrigger("Shoot2");
                 switchShootAnim = false;
             }
-
-            StartCoroutine(ShootDelay());
+            canShoot = false;
+            StartCoroutine(ResetShoot());
         }
     }
 
-    public IEnumerator ShootDelay()
+    public void Shoot()
     {
-        yield return new WaitForSeconds(0.283f);
         SoundManager.instance.Play("PlayerShoot");
         var tmp = Instantiate(projectile);
         tmp.transform.position = shootPoint.position;
         tmp = null;
+    }
+
+    public IEnumerator ResetShoot()
+    {
+        yield return new WaitForSeconds(shootCooldown);
+        canShoot = true;
     }
 }
