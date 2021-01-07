@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SoundManager.instance.Shoot();
+            SoundManager.instance.Play("PlayerShoot");
             var tmp = Instantiate(projectile);
             tmp.transform.position = shootPoint.position;
             tmp = null;

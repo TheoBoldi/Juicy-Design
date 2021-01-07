@@ -24,7 +24,7 @@ public class Projectile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            SoundManager.instance.EnemyDeath();
+            SoundManager.instance.Play("EnemyDeath");
             GameManager.instance.UpdateScore();
             Destroy(collision.gameObject);
             Destroy(this.gameObject);

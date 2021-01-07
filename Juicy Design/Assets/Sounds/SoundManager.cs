@@ -1,85 +1,114 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class SoundManager : MonoBehaviour
 {
-    public static SoundManager instance;
-
-    [Header("General Sounds")]
-    public AudioSource mainTheme;
-
-    [Header("Player Sounds")]
-    public AudioSource shoot;
-    public AudioSource hit;
-    public AudioSource death;
-    public AudioSource miss;
-
-    [Header("Enemies Sounds")]
-    public AudioSource enemyDeath;
-
-    [Header("Ambiance Sounds")]
-    public AudioSource insects;
-    public AudioSource burp;
+    public Sound[] fx;
+    public Sound[] ambient;
+    public Sound music;
+    private static SoundManager _instance;
+    public static SoundManager instance
+    {
+        get
+        {
+            return _instance;
+        }
+    }
 
     private void Awake()
     {
-        instance = this;
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+        foreach (Sound s in fx)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.outputAudioMixerGroup = s.mixer;
+            s.source.volume = s.volume;
+            s.source.pitch = s.pitch;
+            s.source.loop = s.loop;
+        }
+        foreach (Sound s in ambient)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.outputAudioMixerGroup = s.mixer;
+            s.source.volume = s.volume;
+            s.source.pitch = s.pitch;
+            s.source.loop = s.loop;
+        }
+        music.source = gameObject.AddComponent<AudioSource>();
+        music.source.clip = music.clip;
+        music.source.outputAudioMixerGroup = music.mixer;
+        music.source.volume = music.volume;
+        music.source.pitch = music.pitch;
+        music.source.loop = music.loop;
+    }
+    private void Start()
+    {
+        foreach (Sound s in ambient)
+        {
+            s.source.Play();
+        }
+        music.source.Play();
     }
 
-    void Start()
+    public void Play(string name)
     {
-        instance.MainTheme();
+        Sound s = Array.Find(fx, sound => sound.name == name);
+        if (s == null)
+        {
+            s = Array.Find(ambient, sound => sound.name == name);
+            if (s == null)
+            {
+
+                Debug.Log("Sound" + name + "not found");
+                return;
+            }
+        }
+        s.source.Play();
     }
 
-    //General
-    public void MainTheme()
+    public void StopSound(string name)
     {
-        mainTheme.Play();
+        Sound s = Array.Find(fx, sound => sound.name == name);
+        if (s == null)
+        {
+            s = Array.Find(ambient, sound => sound.name == name);
+            if (s == null)
+                return;
+        }
+
+        s.source.Stop();
     }
 
-    //Player
-    public void Shoot()
+    public bool isPlaying(string name)
     {
-        shoot.pitch = Random.Range(0.8f, 1.2f);
-        shoot.Play();
+        Sound s = Array.Find(fx, sound => sound.name == name);
+        if (s != null)
+        {
+            return s.source.isPlaying;
+        }
+        else
+            return false;
     }
 
-    public void Hit()
+    public void CutSounds()
     {
-        hit.pitch = Random.Range(0.8f, 1.2f);
-        hit.Play();
-    }
-
-    public void Death()
-    {
-        death.Play();
-    }
-
-    public void Miss()
-    {
-        miss.pitch = Random.Range(0.8f, 1.2f);
-        miss.Play();
-    }
-
-    //Enemies Sounds
-
-    public void EnemyDeath()
-    {
-        enemyDeath.pitch = Random.Range(0.8f, 1.2f);
-        enemyDeath.Play();
-    }
-
-    //Ambiance Sounds
-
-    public void Insects()
-    {
-        insects.Play();
-    }
-
-    public void Burp()
-    {
-        burp.pitch = Random.Range(0.8f, 1.2f);
-        burp.Play();
+        foreach (Sound s in ambient)
+        {
+            s.source.Stop();
+        }
+        music.source.Stop();
     }
 }

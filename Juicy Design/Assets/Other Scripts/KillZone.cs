@@ -8,7 +8,7 @@ public class KillZone : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("PlayerProjectile"))
         {
-            SoundManager.instance.Miss();
+            SoundManager.instance.Play("PlayerMiss");
         }
     }
 

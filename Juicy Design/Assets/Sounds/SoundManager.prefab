@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4003889346175910559
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4003889346175910557}
+  - component: {fileID: 4003889346175910558}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4003889346175910557
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4003889346175910559}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.5184577, y: 0.09824671, z: -0.61561894}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4003889346175910558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4003889346175910559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6d8b20d59b12c543b7ee75620e7653c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fx:
+  - clip: {fileID: 8300000, guid: bb6312878d6d1fd41ae75aac648491da, type: 3}
+    name: Burp
+    mixer: {fileID: 6285099539791811931, guid: 46314a900e1438c43832d5fb4757b373, type: 2}
+    pitch: 1
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: f960c4ee3a6dbce459699a9969c9a805, type: 3}
+    name: PlayerShoot
+    mixer: {fileID: -9148813945960550121, guid: 46314a900e1438c43832d5fb4757b373, type: 2}
+    pitch: 1
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 99103d56ae190aa439b7c9ee905ed932, type: 3}
+    name: PlayerHit
+    mixer: {fileID: -9148813945960550121, guid: 46314a900e1438c43832d5fb4757b373, type: 2}
+    pitch: 1
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 29d794c1568af8e45b0e845963e6a96c, type: 3}
+    name: PlayerDeath
+    mixer: {fileID: -9148813945960550121, guid: 46314a900e1438c43832d5fb4757b373, type: 2}
+    pitch: 1
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: a11b99f7340b5be4fb69382fe931d1e6, type: 3}
+    name: PlayerMiss
+    mixer: {fileID: -9148813945960550121, guid: 46314a900e1438c43832d5fb4757b373, type: 2}
+    pitch: 1
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 358af866e311ccd488c902dd5693a4b0, type: 3}
+    name: EnemyDeath
+    mixer: {fileID: -9148813945960550121, guid: 46314a900e1438c43832d5fb4757b373, type: 2}
+    pitch: 1
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 8ff2d278ab3dafe468dbe5c4021c5823, type: 3}
+    name: Insects
+    mixer: {fileID: 6285099539791811931, guid: 46314a900e1438c43832d5fb4757b373, type: 2}
+    pitch: 1
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  ambient: []
+  music:
+    clip: {fileID: 8300000, guid: d33de32d28827144fab314329dfd0817, type: 3}
+    name: Music
+    mixer: {fileID: -8071919718253545406, guid: 46314a900e1438c43832d5fb4757b373, type: 2}
+    pitch: 1
+    volume: 1
+    loop: 0
+    source: {fileID: 0}

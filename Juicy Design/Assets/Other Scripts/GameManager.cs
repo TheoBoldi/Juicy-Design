@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
         if(randomBurp <= 0)
         {
             randomBurp = Random.Range(10, 20);
-            SoundManager.instance.Burp();
+            SoundManager.instance.Play("Burp");
         }
     }
 
@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
 
         if(score == triggerInsects)
         {
-            SoundManager.instance.Insects();
+            SoundManager.instance.Play("Insects");
         }
     }
 
@@ -65,13 +65,13 @@ public class GameManager : MonoBehaviour
 
         if(actualLife <= 0)
         {
-            SoundManager.instance.Death();
+            SoundManager.instance.Play("PlayerDeath");
             Destroy(player);
             Instantiate(endCanvas);
         }
         else
         {
-            SoundManager.instance.Hit();
+            SoundManager.instance.Play("PlayerHit");
         }
     }
 }
