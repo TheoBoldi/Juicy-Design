@@ -50,8 +50,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 9184672668167705242, guid: c44741b76e237874584afacac24947a9, type: 3}
   shootPoint: {fileID: 8030133517050893354}
-  shootCooldown: 1
-  speed: 10
+  shootCooldown: 0
+  speed: 3
 --- !u!33 &8243288368588454932
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -110,8 +110,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 9184672668167705242, guid: c44741b76e237874584afacac24947a9, type: 3}
   shootPoint: {fileID: 945283998031138323}
-  shootCooldown: 1
-  speed: 10
+  shootCooldown: 2
+  speed: 5
 --- !u!65 &-7059628529945456185
 BoxCollider:
   m_ObjectHideFlags: 0
