@@ -26,6 +26,7 @@ public class EnemiesSpawner : MonoBehaviour
         tmp.transform.position = Spawners[random].transform.position;
         tmp.transform.rotation = new Quaternion(0, 180, 0, 0);
         tmp = null;
+        Spawners[random].GetComponentInChildren<Animator>().SetTrigger("Spawn");
         StartCoroutine(Spawn());
     }
 }

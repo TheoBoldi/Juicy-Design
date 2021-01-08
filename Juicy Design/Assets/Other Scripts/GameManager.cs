@@ -22,9 +22,11 @@ public class GameManager : MonoBehaviour
 
     private float randomBurp;
 
+    public JuicyLayersManager layerManager;
     private void Awake()
     {
         instance = this;
+        layerManager = FindObjectOfType<JuicyLayersManager>();
     }
 
     private void Start()

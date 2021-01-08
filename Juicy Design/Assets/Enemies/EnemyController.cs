@@ -18,6 +18,7 @@ public class EnemyController : MonoBehaviour
     {
         _anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody>();
+        _anim.enabled = GameManager.instance.layerManager.isAnimActive;
         StartCoroutine(CheckFront());
         StartCoroutine(TryShoot());
     }
@@ -46,7 +47,12 @@ public class EnemyController : MonoBehaviour
     public IEnumerator TryShoot()
     {
         if(canShoot)
-        _anim.SetTrigger("Shoot");
+        {
+            if (_anim.enabled)
+                _anim.SetTrigger("Shoot");
+            else
+                Shoot();
+        }
         yield return new WaitForSeconds(shootCooldown);
         StartCoroutine(TryShoot());
     }

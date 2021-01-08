@@ -48,7 +48,7 @@ MonoBehaviour:
     name: Burp
     mixer: {fileID: 6285099539791811931, guid: 46314a900e1438c43832d5fb4757b373, type: 2}
     pitch: 1
-    volume: 1
+    volume: 0.1
     loop: 0
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: f960c4ee3a6dbce459699a9969c9a805, type: 3}

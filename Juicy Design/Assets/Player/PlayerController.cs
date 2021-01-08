@@ -38,8 +38,6 @@ public class PlayerController : MonoBehaviour
             actualPos--;
             rb.AddForce(transform.forward * speed, ForceMode.Impulse);
             anim.SetTrigger("MoveLeft");
-            //rb.position = Vector3.Lerp(this.transform.position, playerPosList[actualPos].position, speed * Time.deltaTime); 
-            //rb.MovePosition(playerPosList[actualPos].position);
         }
 
         if (actualPos < playerPosList.Count - 1 && (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)))
@@ -47,21 +45,29 @@ public class PlayerController : MonoBehaviour
             actualPos++;
             rb.AddForce(-transform.forward * speed, ForceMode.Impulse);
             anim.SetTrigger("MoveRight");
-            //rb.position = Vector3.Lerp(this.transform.position, playerPosList[actualPos].position, speed * Time.deltaTime);
-            //rb.MovePosition(playerPosList[actualPos].position);
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && canShoot)
         {
             if (!switchShootAnim)
             {
-                anim.SetTrigger("Shoot");
-                switchShootAnim = true;
+                if (anim.enabled)
+                {
+                    anim.SetTrigger("Shoot");
+                    switchShootAnim = true;
+                }
+                else
+                    Shoot();
             }
             else
             {
-                anim.SetTrigger("Shoot2");
-                switchShootAnim = false;
+                if (anim.enabled)
+                {
+                    anim.SetTrigger("Shoot2");
+                    switchShootAnim = false;
+                }
+                else
+                    Shoot();
             }
             canShoot = false;
             StartCoroutine(ResetShoot());
@@ -81,4 +87,5 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(shootCooldown);
         canShoot = true;
     }
+    
 }

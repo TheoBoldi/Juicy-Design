@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 50
+  deathParticles: {fileID: 3221990177893467269, guid: 303915a3f189ee84daaaa8e9ad022e62, type: 3}
 --- !u!136 &252013579884808312
 CapsuleCollider:
   m_ObjectHideFlags: 0

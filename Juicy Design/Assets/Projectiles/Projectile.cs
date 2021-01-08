@@ -6,9 +6,10 @@ public class Projectile : MonoBehaviour
 {
     public float speed;
     private Rigidbody rb;
-
+    public GameObject deathParticles;
     void Start()
     {
+        GetComponentInChildren<Animator>().enabled = GameManager.instance.layerManager.isAnimActive;
         rb = GetComponent<Rigidbody>();
         rb.velocity = transform.right * speed;
         StartCoroutine(Destroy());
@@ -24,6 +25,8 @@ public class Projectile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            if(GameManager.instance.layerManager.isParticleActive)
+                Instantiate(deathParticles, collision.transform.position, Quaternion.identity, null);
             SoundManager.instance.Play("EnemyDeath");
             GameManager.instance.UpdateScore();
             Destroy(collision.gameObject);

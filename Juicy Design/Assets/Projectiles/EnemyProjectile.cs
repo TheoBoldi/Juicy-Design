@@ -11,6 +11,7 @@ public class EnemyProjectile : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.velocity = -transform.right * speed;
+        GetComponentInChildren<Animator>().enabled = GameManager.instance.layerManager.isAnimActive;
         StartCoroutine(Destroy());
     }
 
@@ -24,6 +25,8 @@ public class EnemyProjectile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            if(GameManager.instance.layerManager.isCameraActive)
+                EZCameraShake.CameraShaker.Instance.ShakeOnce(10, 2, 0.05f, 0.2f);
             GameManager.instance.DecreaseLife();
             Destroy(this.gameObject);
         }
