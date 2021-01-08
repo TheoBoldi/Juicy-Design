@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Audio;
 
 public class JuicyLayersManager : MonoBehaviour
@@ -30,6 +31,9 @@ public class JuicyLayersManager : MonoBehaviour
     public GameObject UI1;
     public GameObject UI2;
 
+    public Font normal;
+    public Font design;
+    public Text score;
     private void Start()
     {
         Animator[] anims = FindObjectsOfType<Animator>();
@@ -163,5 +167,10 @@ public class JuicyLayersManager : MonoBehaviour
         isUIActive = !isUIActive;
         UI1.SetActive(!isUIActive);
         UI2.SetActive(isUIActive);
+
+        if (isUIActive)
+            score.font = design;
+        else
+            score.font = normal;
     }
 }
