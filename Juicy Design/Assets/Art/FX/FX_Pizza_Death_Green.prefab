@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8222273211471041606}
   - component: {fileID: 9080341489387974574}
   m_Layer: 0
-  m_Name: FX_Pizza_Death_Red
+  m_Name: FX_Pizza_Death_Green
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4836,7 +4836,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 621057864889098499620759fa4b458a, type: 2}
+  - {fileID: 2100000, guid: 9c0551f675a80c240bbf21ee96f6684d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5103,8 +5103,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.50980395, g: 0.47814342, b: 0.16470589, a: 0.54509807}
-      maxColor: {r: 0.4509804, g: 0.09220488, b: 0.07450981, a: 0.5254902}
+      minColor: {r: 0.3870756, g: 0.4528302, b: 0.17728728, a: 0.54509807}
+      maxColor: {r: 0.63972485, g: 0.6886792, b: 0.2956123, a: 0.5254902}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -9966,7 +9966,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.4339623, g: 0.1357479, b: 0.079832695, a: 1}
+      maxColor: {r: 0.22914319, g: 0.43529412, b: 0.078431375, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
