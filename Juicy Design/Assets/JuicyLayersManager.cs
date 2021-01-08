@@ -18,6 +18,8 @@ public class JuicyLayersManager : MonoBehaviour
     public bool isParticleActive = false;
     [HideInInspector]
     public bool isTrailActive = false;
+    [HideInInspector]
+    public bool isUIActive = false;
 
     public GameObject screenEffects;
 
@@ -25,12 +27,15 @@ public class JuicyLayersManager : MonoBehaviour
     public AudioMixerGroup SFXMixer;
     public AudioMixerGroup AmbientsMixer;
 
+    public GameObject UI1;
+    public GameObject UI2;
+
     private void Start()
     {
         Animator[] anims = FindObjectsOfType<Animator>();
         for (int i = 0; i < anims.Length; i++)
         {
-            if (anims[i] != null && anims[i].gameObject.name != "Crade")
+            if (anims[i] != null && anims[i].gameObject.name != "Crade" && anims[i].gameObject.name != "Saussage")
                 anims[i].enabled = isAnimActive;
         }
         ParticleSystem[] particles = FindObjectsOfType<ParticleSystem>();
@@ -62,6 +67,8 @@ public class JuicyLayersManager : MonoBehaviour
         AmbientsMixer.audioMixer.SetFloat("AmbientsVolume", -80f);
         SFXMixer.audioMixer.SetFloat("SFXVolume", -80f);
         screenEffects.SetActive(isScreenEffectActive);
+        UI1.SetActive(!isUIActive);
+        UI2.SetActive(isUIActive);
     }
     public void SwitchMusic()
     {
@@ -93,7 +100,7 @@ public class JuicyLayersManager : MonoBehaviour
         Animator[] anims = FindObjectsOfType<Animator>();
         for(int i = 0; i < anims.Length; i++)
         {
-            if (anims[i] != null && anims[i].gameObject.name != "Crade")
+            if (anims[i] != null && anims[i].gameObject.name != "Crade" && anims[i].gameObject.name != "Saussage")
                 anims[i].enabled = isAnimActive;
         }
     }
@@ -149,5 +156,12 @@ public class JuicyLayersManager : MonoBehaviour
                     trails[i].enabled = true;
             }
         }
+    }
+
+    public void SwitchUI()
+    {
+        isUIActive = !isUIActive;
+        UI1.SetActive(!isUIActive);
+        UI2.SetActive(isUIActive);
     }
 }

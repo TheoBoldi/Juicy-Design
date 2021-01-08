@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public GameObject saussagesParent;
     public List<GameObject> saussages;
     private int actualSaussage;
+    public Text lifeText;
 
     private float randomBurp;
 
@@ -73,7 +74,7 @@ public class GameManager : MonoBehaviour
         actualLife--;
         saussages[actualSaussage].GetComponent<Animator>().SetTrigger("Hit");
         actualSaussage--;
-
+        lifeText.text = "Life : " + actualLife.ToString();
         if(actualLife <= 0)
         {
             SoundManager.instance.Play("PlayerDeath");

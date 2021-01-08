@@ -12,9 +12,6 @@ public class EndCanvas : MonoBehaviour
 
     void Start()
     {
-        scoreCanvas = GameObject.Find("ScoreCanvas");
-        scoreCanvas.SetActive(false);
-
         gameManager = GameObject.FindObjectOfType<GameManager>();
         scoreText.text = "Your score : " + gameManager.score.ToString();
 
