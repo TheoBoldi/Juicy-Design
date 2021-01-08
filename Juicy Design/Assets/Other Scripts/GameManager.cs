@@ -18,7 +18,9 @@ public class GameManager : MonoBehaviour
     [Header("Life")]
     public int maxLife;
     private int actualLife;
-    public Text lifeText;
+    public GameObject saussagesParent;
+    public List<GameObject> saussages;
+    private int actualSaussage;
 
     private float randomBurp;
 
@@ -33,14 +35,19 @@ public class GameManager : MonoBehaviour
     {
         score = 0;
         actualLife = maxLife;
+        actualSaussage = 4;
         player = GameObject.FindObjectOfType<PlayerController>().gameObject;
         randomBurp = Random.Range(10, 20);
+
+        for(int i = 0; i < saussagesParent.transform.childCount; i++)
+        {
+            saussages.Add(saussagesParent.transform.GetChild(i).gameObject);
+        }
     }
 
     private void Update()
     {
         scoreText.text = "Score : " + score.ToString();
-        lifeText.text = "Life : " + actualLife.ToString();
 
         randomBurp -= Time.deltaTime;
 
@@ -64,6 +71,8 @@ public class GameManager : MonoBehaviour
     public void DecreaseLife()
     {
         actualLife--;
+        saussages[actualSaussage].GetComponent<Animator>().SetTrigger("Hit");
+        actualSaussage--;
 
         if(actualLife <= 0)
         {
