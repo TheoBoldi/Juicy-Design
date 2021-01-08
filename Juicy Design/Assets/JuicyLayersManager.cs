@@ -11,9 +11,13 @@ public class JuicyLayersManager : MonoBehaviour
     [HideInInspector]
     public bool isAnimActive = false;
     [HideInInspector]
-    public bool isCameraActive = false;
+    public bool isShakeActive = false;
+    [HideInInspector]
+    public bool isScreenEffectActive = false;
     [HideInInspector]
     public bool isParticleActive = false;
+    [HideInInspector]
+    public bool isTrailActive = false;
 
     public AudioMixerGroup MusicMixer;
     public AudioMixerGroup SFXMixer;
@@ -36,6 +40,20 @@ public class JuicyLayersManager : MonoBehaviour
                     particles[i].Stop();
                 else
                     particles[i].Play();
+            }
+        }
+        TrailRenderer[] trails = FindObjectsOfType<TrailRenderer>();
+        for (int i = 0; i < trails.Length; i++)
+        {
+            if (trails[i] != null)
+            {
+                if (!isParticleActive)
+                {
+                    trails[i].Clear();
+                    trails[i].enabled = false;
+                }
+                else
+                    trails[i].enabled = true;
             }
         }
         MusicMixer.audioMixer.SetFloat("MusicVolume", -80f);
@@ -77,11 +95,15 @@ public class JuicyLayersManager : MonoBehaviour
         }
     }
 
-    public void SwitchCamera()
+    public void SwitchShake()
     {
-       isCameraActive = !isCameraActive;
+       isShakeActive = !isShakeActive;
     }
 
+    public void SwitchScreen()
+    {
+        isScreenEffectActive = !isScreenEffectActive;
+    }
     public void SwitchParticle()
     {
         isParticleActive = !isParticleActive;
@@ -94,9 +116,33 @@ public class JuicyLayersManager : MonoBehaviour
                 {
                     particles[i].Clear();
                     particles[i].Stop();
+                    if (particles[i].gameObject.name.Contains("Pizza_Death"))
+                        Destroy(particles[i].gameObject);
                 }
                 else
+                {
                     particles[i].Play();
+                }
+            }
+        }
+        
+    }
+
+    public void SwitchTrails()
+    {
+        isTrailActive = !isTrailActive;
+        TrailRenderer[] trails = FindObjectsOfType<TrailRenderer>();
+        for (int i = 0; i < trails.Length; i++)
+        {
+            if (trails[i] != null)
+            {
+                if (!isTrailActive)
+                {
+                    trails[i].Clear();
+                    trails[i].enabled = false;
+                }
+                else
+                    trails[i].enabled = true;
             }
         }
     }

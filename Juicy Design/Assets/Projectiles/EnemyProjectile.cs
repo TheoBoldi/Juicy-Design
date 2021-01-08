@@ -12,6 +12,8 @@ public class EnemyProjectile : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.velocity = -transform.right * speed;
         GetComponentInChildren<Animator>().enabled = GameManager.instance.layerManager.isAnimActive;
+        if (!GameManager.instance.layerManager.isTrailActive)
+            GetComponentInChildren<TrailRenderer>().enabled = false;
         StartCoroutine(Destroy());
     }
 
@@ -25,7 +27,7 @@ public class EnemyProjectile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            if(GameManager.instance.layerManager.isCameraActive)
+            if(GameManager.instance.layerManager.isShakeActive)
                 EZCameraShake.CameraShaker.Instance.ShakeOnce(10, 2, 0.05f, 0.2f);
             GameManager.instance.DecreaseLife();
             Destroy(this.gameObject);

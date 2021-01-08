@@ -10,6 +10,12 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         GetComponentInChildren<Animator>().enabled = GameManager.instance.layerManager.isAnimActive;
+
+        if (!GameManager.instance.layerManager.isParticleActive)
+            GetComponentInChildren<ParticleSystem>().Stop();
+        if (!GameManager.instance.layerManager.isTrailActive)
+            GetComponentInChildren<TrailRenderer>().enabled = false;
+
         rb = GetComponent<Rigidbody>();
         rb.velocity = transform.right * speed;
         StartCoroutine(Destroy());
