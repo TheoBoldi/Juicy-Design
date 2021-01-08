@@ -19,6 +19,8 @@ public class JuicyLayersManager : MonoBehaviour
     [HideInInspector]
     public bool isTrailActive = false;
 
+    public GameObject screenEffects;
+
     public AudioMixerGroup MusicMixer;
     public AudioMixerGroup SFXMixer;
     public AudioMixerGroup AmbientsMixer;
@@ -28,7 +30,7 @@ public class JuicyLayersManager : MonoBehaviour
         Animator[] anims = FindObjectsOfType<Animator>();
         for (int i = 0; i < anims.Length; i++)
         {
-            if (anims[i] != null)
+            if (anims[i] != null && anims[i].gameObject.name != "Crade")
                 anims[i].enabled = isAnimActive;
         }
         ParticleSystem[] particles = FindObjectsOfType<ParticleSystem>();
@@ -59,6 +61,7 @@ public class JuicyLayersManager : MonoBehaviour
         MusicMixer.audioMixer.SetFloat("MusicVolume", -80f);
         AmbientsMixer.audioMixer.SetFloat("AmbientsVolume", -80f);
         SFXMixer.audioMixer.SetFloat("SFXVolume", -80f);
+        screenEffects.SetActive(isScreenEffectActive);
     }
     public void SwitchMusic()
     {
@@ -90,7 +93,7 @@ public class JuicyLayersManager : MonoBehaviour
         Animator[] anims = FindObjectsOfType<Animator>();
         for(int i = 0; i < anims.Length; i++)
         {
-            if (anims[i] != null)
+            if (anims[i] != null && anims[i].gameObject.name != "Crade")
                 anims[i].enabled = isAnimActive;
         }
     }
@@ -103,6 +106,7 @@ public class JuicyLayersManager : MonoBehaviour
     public void SwitchScreen()
     {
         isScreenEffectActive = !isScreenEffectActive;
+        screenEffects.SetActive(isScreenEffectActive);
     }
     public void SwitchParticle()
     {
